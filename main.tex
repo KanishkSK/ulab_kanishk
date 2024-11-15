@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+\title{Doctor, is this normal? \\ \large ULAB, Division of Sincerely Serious Science}
+\author{Kanishk Sai Kondaka}
+\date{\today}
+
+\begin{document}
+
+
+\maketitle
+
+\section{Introduction}
+According to my sources, around May 2021 an image began circulating around the internet about a broken sidewalk. The image, which can be seen in Figure \ref{fig:Figure 1}, claims that the sidewalk crack resembles the form of a normal distribution. This lab report will test that claim by fitting this curve with a normal standard
+distribution (also called a Gaussian distribution).
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8 \linewidth]{download.jpeg}
+    \caption{Figure 1: Sidewalk image from the internet.}
+    \label{fig:Figure 1}
+\end{figure}
+
+\section{Methods}
+\subsection{Preprocessing}
+First, we used the Perspective Wrap tool in Photoshop to correct the titled perspective of the image. Then,
+we worked with the Python Imaging Library and NumPy \cite{2020NumPy-Array} and converted our image to grayscale.
+A threshold mask was applied to the image so that only dark pixels would be retained. Note that some
+minimal manual processing was required to remove the vertical sidewalk crack as well as outlier pixels.
+Finally, the location of the dark pixels are recorded as coordinates in a Cartesian plane.
+\subsection{Curve Fitting}
+We worked with SciPy \cite{2020SciPy-NMeth} to fit a normal distribution,
+\begin{equation}
+    f(x) = a \cdot e^{-\frac{1}{2} \frac{(x-\mu)^2}{\sigma}}
+\end{equation}
+where a is a scaling constant, µ is the mean and σ is the standard deviation.
+
+\section{Results}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1 \linewidth]{fit.png}
+    \caption{Figure 2: Top: original image, Middle: processed image with perspective correction and greyscale transformation, Bottom: curve fit of the sidewalk crack points.}
+    \label{fig:Figure 2}
+\end{figure}
+Furthermore, we determined the fit to have a reduced chi-squared value,
+\begin{equation}
+    \chi^2_\nu = \frac{1}{\nu}\sum\frac{(O-E)^2}{E} = 0.22
+\end{equation}
+
+\bibliographystyle{ieeetr}
+\bibliography{ref.bib}
+\nocite{*}
+
+\end{document}
